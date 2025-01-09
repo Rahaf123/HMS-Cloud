@@ -1,0 +1,72 @@
+{% extends "layouts/manager_base.html" %}
+
+{% block title %} Mailing {% endblock %}
+{% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Send an Email</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manager</a></li>
+                    <li class="breadcrumb-item"><a href="">Send an Email</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% with messages = get_flashed_messages(with_categories=True) %}
+                        {% if messages %}
+                            <ul class="flash-messages">
+                            {% for category, message in messages %} 
+                                {% if category == 'error' %}
+                                <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                                    {{message}}
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                {% elif category == 'success' %}
+                                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                                    {{message}}
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>                                        
+                        {% endif %}
+                    {% endwith %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Email Details</h5>
+                            <form action="{{url_for('manager.send_email')}} " method="post">
+                                <div class="row gy-4">
+                
+                                  <div class="col-md-12 ">
+                                    <input type="email" class="form-control" name="recipient" placeholder="Recipient Email" required>
+                                  </div>
+                  
+                                  <div class="col-md-12">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                                  </div>
+                  
+                                  <div class="col-md-12">
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                  </div>
+                  
+                                  <div class="col-md-12 text-center">   
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                  </div>
+                  
+                                </div>
+                              </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

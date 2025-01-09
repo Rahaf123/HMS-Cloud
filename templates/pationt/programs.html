@@ -1,0 +1,79 @@
+{% extends "layouts/trainee_base.html" %}
+{% block title %} Training Programs {% endblock %}
+{% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Training Programs</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('trainee.dashboard_view') }}">Trainee</a></li>
+                    <li class="breadcrumb-item"><a href="#">Training
+                        Programs</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Area</th>
+                                    <th scope="col">Fees</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">End Date</th>
+                                    <th scope="col">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for program in programs %}
+                                    <tr>
+                                        <th scope="row">{{ program[0] }}</th>
+                                        <td>{{ program[1] }}</td>
+                                        <td>{{ program[2] }}</td>
+                                        <td>{{ program[3] }}</td>
+                                        <td>{{ program[4] }}</td>
+                                        <td>{{ program[5] }}</td>
+                                        <td>{{ program[6] }}</td>
+                                        <td>
+                                            <form method="POST"
+                                                  action="{{ url_for('trainee.program_application', training_program_id=program[0]) }}">
+                                                <button type="submit" class="btn btn-primary">Apply</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul class="flash-messages">
+                                        {% for message in messages %}
+                                            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"
+                                                 role="alert">
+                                                {{ message }}
+                                                <button type="button" class="btn-close btn-close-white"
+                                                        data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

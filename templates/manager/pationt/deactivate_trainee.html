@@ -1,0 +1,90 @@
+{% extends "layouts/manager_base.html" %}
+
+{% block title %} Deactivate Trainees Account {% endblock %}
+{% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Trainee Account Deactivation Requests</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manager</a></li>
+                    <li class="breadcrumb-item"><a href="#">Trainees</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Trainee Account Deactivation Requests</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% with messages = get_flashed_messages(with_categories=True) %}
+                        {% if messages %}
+                            <ul class="flash-messages">
+                            {% for category, message in messages %} 
+                                {% if category == 'error' %}
+                                <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                                    {{message}}
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                {% elif category == 'success' %}
+                                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                                    {{message}}
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>                                        
+                        {% endif %}
+                    {% endwith %}
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">-</th>
+                                    <th scope="col">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for trainee in trainees %}
+                                    <tr>
+                                        <th scope="row">{{ trainee[0] }}</th>
+                                        <td>{{ trainee[2] }}</td>
+                                        <td>{{ trainee[3] }}</td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('manager.deactivate_trainee') }}">
+                                                <input type="hidden" name="traineeID" value="{{trainee[0]}}">
+                                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#verticalycentered" type="submit">Deactivate
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('manager.reject_deactivate_trainee') }}">
+                                                <input type="hidden" name="traineeID" value="{{trainee[0]}}">
+                                                <button class="btn btn-light" data-bs-toggle="modal"
+                                                        data-bs-target="#verticalycentered" type="submit">Reject
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

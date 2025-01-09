@@ -1,0 +1,55 @@
+{% extends "layouts/manager_base.html" %}
+
+{% block title %} Logging {% endblock %}
+{% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Manager</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manager</a></li>
+                    <li class="breadcrumb-item"><a href="#">Logging Details</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">logging ID</th>
+                                    <th scope="col">User ID</th>
+                                    <th scope="col">logging Type</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">logging Time</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for logging in loggings %}
+                                    <tr>
+                                        <th scope="row">{{ logging[0] }}</th>
+                                        <td>{{ logginh[1] }}</td>
+                                        <td>{{ logging[2] }}</td>
+                                        <td>{{ logging[3] }}</td>
+                                        <td>{{ logging[4] }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

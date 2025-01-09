@@ -1,0 +1,66 @@
+{% extends "layouts/trainee_base.html" %}
+{% block title %} Program Details {% endblock %}
+{% block content %}
+    <!-- Trainee Dashboard contents goes here -->
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Program Details</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('trainee.dashboard_view') }}">Trainee</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('trainee.training_view') }}">Training</a></li>
+                    <li class="breadcrumb-item"><a href="#">Program Details</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col col-lg-8 mb-8 mb-lg-0">
+                        <div class="card mb-3" style="border-radius: .5rem;">
+                            <div class="row g-0">
+                                <div class="card-body p-4">
+                                    <h3>Program Information</h3>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Name</h6>
+                                            <p class="text-muted">{{ program.name }}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Description</h6>
+                                            <p class="text-muted">{{ program.description }}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Area of Training</h6>
+                                            <p class="text-muted">{{ program.area_of_training }}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Fees</h6>
+                                            <p class="text-muted">{{ program.fees }}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Start Date</h6>
+                                            <p class="text-muted">{{ program.start_date }}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>End Date</h6>
+                                            <p class="text-muted">{{ program.end_date }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-start">
+                                        <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                                        <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                                        <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "layouts/manager_base.html" %}
+
+{% block title %} Edit Program {% endblock %}
+{% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Edit Training Program</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manager</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('manager.get_all_programs_view') }}">Training
+                        Programs</a></li>
+                    <li class="breadcrumb-item"><a href="#">Edit</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Training Program Details</h5>
+                            <!-- Horizontal Form -->
+                            <form action="{{url_for('manager.edit_program')}}" method="POST">
+                                <div class="row mb-3">
+                                    <label for="programName" class="col-sm-2 col-form-label">Program Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="programName" name="programName"
+                                               value="{{ program[1] }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="description" class="col-sm-2 col-form-label">Program
+                                        Description</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="description"
+                                               name="description" value="{{ program[2] }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="area" class="col-sm-2 col-form-label">Program Area</label>
+                                    <div class="col-sm-10">
+                                        <select id="area" class="col-sm-10 form-select" name="area">
+                                            <option selected value="">Choose...</option>
+                                            {% for area in areas %}
+                                                <option {% if area == program[3] %} selected = selected{% endif %}value="{{ area }}">{{ area }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label for="fees" class="col-sm-2 col-form-label">Program
+                                        Fees</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="fees"
+                                               name="fees" value="{{ program[4] }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="start" class="col-sm-2 col-form-label">Program
+                                        Start Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="start"
+                                               name="start" required value="{{ program[5] }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="end" class="col-sm-2 col-form-label">Program
+                                        End Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" required class="form-control" id="end"
+                                               name="end" value="{{ program[6] }}">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save Edit</button>
+                                    <input type="hidden" value="{{program[0]}}" name="programID">
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </form><!-- End Horizontal Form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

@@ -1,0 +1,95 @@
+{% extends "layouts/manager_base.html" %}
+
+{% block title %} Pending Advisors {% endblock %}
+{% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Advisors Registration Requests</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manager</a></li>
+                    <li class="breadcrumb-item"><a href="#">Advisors</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Advisors Registration Requests</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        <ul class="flash-messages">
+                        {% for category, message in messages %} 
+                            {% if category == 'error' %}
+                            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                                {{message}}
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% elif category == 'success' %}
+                            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                                {{message}}
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>                                        
+                    {% endif %}
+                    {% endwith %}
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Discipline</th>
+                                    <th scope="col">-</th>
+                                    <th scope="col">-</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for advisor in advisors %}
+                                    <tr>
+                                        <th scope="row">{{ advisor[0] }}</th>
+                                        <td>{{ advisor[1]}}</td>
+                                        <td>{{ advisor[2]}}</td>
+                                        <td>{{ advisor[3]}}</td>
+					<td>{{ advisor[4]}}</td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('manager.approve_advisor') }}">
+                                                <input type="hidden" name="advisorID" value="{{advisor[0]}}">
+                                                <input type="hidden" name="advisorEmail" value="{{advisor[3]}}">
+                                                <button class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#verticalycentered" type="submit">Approve
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('manager.reject_advisor') }}">
+                                                <input type="hidden" name="advisorID" value="{{advisor[0]}}">
+                                                <input type="hidden" name="advisorEmail" value="{{advisor[3]}}">
+                                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#verticalycentered" type="submit">Reject
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

@@ -1,0 +1,82 @@
+{% extends "layouts/trainee_base.html" %}
+
+{% block title %} Trainee Dashboard {% endblock %}
+{% block content %}
+    <!-- Trainee Dashboard contents goes here -->
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Trainee</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col col-lg-8 mb-8 mb-lg-0">
+                        <div class="card mb-3" style="border-radius: .5rem;">
+                            <div class="row g-0" style="padding: 2rem">
+                                <div class="col-md-12 gradient-custom text-center text-white"
+                                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; ">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                         alt="Avatar" class="img-fluid my-5" style="width: 180px;"/>
+                                    <h5 style="color:black">{{ trainee.username }}</h5>
+                                    <p style="color:black">{{ trainee.area_of_training }}<br> {{ trainee.desired_field }}
+                                    </p>
+                                    <i class="far fa-edit mb-5"></i>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card-body p-4">
+                                        <h6>Information</h6>
+                                        <hr class="mt-0 mb-4">
+                                        <div class="row pt-1">
+                                            <div class="col-6 mb-3">
+                                                <h6>Email</h6>
+                                                <p class="text-muted">{{ trainee.email }}</p>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <h6>Trainee ID</h6>
+                                                <p class="text-muted">{{ trainee.traineeID }}</p>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <h6>Status</h6>
+                                                <p class="text-muted">{{ trainee.status }}</p>
+                                            </div>
+                                        </div>
+                                        <h6>User Documents</h6>
+                                        <hr class="mt-0 mb-4">
+                                        <div class="row pt-1">
+                                            <div class="col-6 mb-3">
+                                                <h6>CV</h6>
+                                                <p class="text-muted">after cv is uploaded on the server, it should have
+                                                    a link.
+                                                    Here goes the link</p>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <h6>Motivation letter</h6>
+                                                <p class="text-muted">link</p>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <h6>Portfolio</h6>
+                                                <p class="text-muted">link</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-start">
+                                            <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                                            <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                                            <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "layouts/trainee_base.html" %}
+{% block title %} My Training Program {% endblock %}
+{% block content %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>My Training Program</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('trainee.dashboard_view') }}">Trainee</a></li>
+                    <li class="breadcrumb-item"><a href="#">My Training Program</a></li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Registration ID</th>
+                                    <th scope="col">Registration Time</th>
+                                    <th scope="col">Program ID</th>
+                                    <th scope="col">Advisor ID</th>
+                                    <th scope="col">Training Status</th>
+                                    <th scope="col">Attendance Form</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">{{ registered_program.ID }}</th>
+                                    <td>{{ registered_program.registration_time }}</td>
+                                    <td>
+                                        <a href="{{ url_for('trainee.one_program_view', program_id = registered_program.training_program_id) }}">{{ registered_program.training_program_id }}</a>
+                                    </td>
+                                    <td>{{ registered_program.advisorID }}</td>
+                                    <td>{{ registered_program.status }}</td>
+                                    <td>
+                                        {% if  not registered_program.ID%}
+                                        -
+                                        {% else %}
+                                            <a href="{{ url_for('trainee.attendance_form_view', registration_id = registered_program.ID) }}">Details</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul class="flash-messages">
+                                        {% for message in messages %}
+                                            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"
+                                                 role="alert">
+                                                {{ message }}
+                                                <button type="button" class="btn-close btn-close-white"
+                                                        data-bs-dismiss="alert"
+                                                        aria-label="Close">
+                                                </button>
+                                            </div>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
+
+

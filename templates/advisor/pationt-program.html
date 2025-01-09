@@ -1,0 +1,63 @@
+{% extends "layouts/advisor_base.html" %}
+
+{% block title %} All Training Programs {% endblock %}
+
+{% block content %}
+
+<!--
+    get all trainign materials for students and ensure they uploaded their stuff
+
+-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>All Training Programs</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('advisor.dashboard_view') }}">Advisor</a></li>
+                <li class="breadcrumb-item"><a href="#">Training Details</a></li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+            <div class="col-lg-12">
+                <div class="card top-selling overflow-auto">            
+            
+                  <div class="card-body pb-0">
+            
+                    <table class="table table-borderless">
+                      <thead>
+                        <tr>
+                          <th scope="col">Training Type</th>
+                          <th scope="col">Company</th>
+                          <th scope="col"># of Trainees</th>
+                          <th scope="col">Field</th>
+                          <th scope="col">Enrollement Date</th>
+                          <th scope="col">Duration</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {% for program in programs %}
+                        <tr>       
+                            <!-- make badges accordingly -->
+                          <td><span class="badge {{ "bg-success" if (program[1]=="private") else "bg-warning" }}">{{program[1]}}</span></td>                          <td><a href="#" class="text-primary fw-bold">{{program[2]}}</a></td>
+                          <td>{{program[2]}}</td>
+                          <td class="fw-bold">{{program[2]}}</td>
+                          <td>{{program[5]}}</td>
+                          <td>{{program[6]}}</td>
+                        </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+            
+                  </div>
+            
+                </div>
+              </div><!-- End Top Selling -->
+
+</main><!-- End #main -->
+{% endblock %}
+
+
